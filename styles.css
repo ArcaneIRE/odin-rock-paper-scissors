@@ -83,8 +83,14 @@ header {
     font-size: 3rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     html {
-        font-size: 14px;
+        font-size: 12px;
+    }
+    main {
+        gap: 5vh;
+    }
+    header {
+        line-height: 3rem;
     }
   }
