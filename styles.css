@@ -4,13 +4,19 @@ body {
     font-family: sans-serif;
 }
 
+#result {
+    position: fixed;
+    top: 5rem;
+    left: 50%;
+}
+
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10vh;
     height: 100%;
-    width: min(60vw, 80rem);
+    width: min(60vw, 40rem);
     margin: 0 auto;
     text-align: center;
 }

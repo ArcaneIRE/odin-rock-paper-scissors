@@ -2,59 +2,53 @@
 // Takes user input and plays it against a random computer choice.
 // Displays the winner after each round, and the overall winner after a set number of rounds.
 
+const resultTag = document.querySelector('#result');
+function displayResult(result, playerSelection, computerSelection) {
+    resultTag.textContent = playerSelection + ' ' +result + ' ' +computerSelection;
+}
+
+function gameOver(result) {
+    console.log(result);
+}
+
 // Randomly returns rock, paper or scissors
 function computerPlay() {
-    const hands = ['rock', 'paper', 'scissors']
+    const hands = ['🪨', '📄', '✂️']
     return  hands[Math.floor(Math.random() * hands.length)]
 }
 
-function getRoundWinner (playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
+function playRound (playerSelection) {
+    computerSelection = computerPlay();
     // Draw
     if (playerSelection === computerSelection) {
-        return `draw`;
+        displayResult(`Draw!`, playerSelection, computerSelection);
+        return;
     }
     // Player win
     if (
-    (playerSelection === 'rock' && computerSelection === 'paper') ||
-    (playerSelection === 'paper' && computerSelection === 'rock') ||
-    (playerSelection === 'scissors' && computerSelection === ' paper')
+    (playerSelection === '🪨' && computerSelection === '📄') ||
+    (playerSelection === '📄' && computerSelection === '🪨') ||
+    (playerSelection === '✂️' && computerSelection === '📄')
     ) {
-        return 'player win';
+        displayResult('Win!', playerSelection, computerSelection);
+        playerScore.textContent = parseInt(playerScore.textContent) + 1;
+        if (playerScore.textContent === '5') {
+            gameOver('win');
+        }
+        return;
     }
     // Computer win 
-    return 'computer win' ; 
+    displayResult('Lose!', playerSelection, computerSelection);
+    cpuScore.textContent = parseInt(cpuScore.textContent) + 1;
+    if (cpuScore.textContent === '5') {
+        gameOver('lose');
+    }
+    return;
 }
 
-// Plays a given number of RPS rounds.
-// Displays the winner of each round.
-// Displays the overall winner.
-function playGame(rounds = 5) {
-    const gameLength = rounds;
-    let playerWins = 0;
-    let computerWins = 0;
-    
-    for (i = 0; i < gameLength; i++) {
-        let result = playRound(prompt('Rock, paper or scissors?'), computerPlay());
-        
-        if (result === 'draw') {
-            console.log('A draw!');
-        }  else if (result === 'player win') {
-            playerWins += 1;
-            console.log('You won this round!');
-        } else {
-            computerWins += 1;
-            console.log('You lose!');
-        }   
-    }
-
-    if (playerWins === computerWins) {
-        console.log('This game is a draw.');
-    } else if (playerWins > computerWins) {
-        console.log('The player wins the game!');
-    } else {
-        console.log('The computer wins the game!');
-    }
-}
-
-playGame(5);
+let playerScore = document.querySelector('#playerScore');
+let cpuScore = document.querySelector('#cpuScore');
+const choices = [...document.querySelectorAll('div#choices > button.choice')];
+choices[0].addEventListener('click', () => playRound('🪨'));
+choices[1].addEventListener('click', () => playRound('📄'));
+choices[2].addEventListener('click', () => playRound('✂️'));
