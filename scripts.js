@@ -2,13 +2,24 @@
 // Takes user input and plays it against a random computer choice.
 // Displays the winner after each round, and the overall winner after a set number of rounds.
 
-const resultTag = document.querySelector('#result');
+const results = document.querySelector('#results');
 function displayResult(result, playerSelection, computerSelection) {
-    resultTag.textContent = playerSelection + ' ' +result + ' ' +computerSelection;
+    text = playerSelection + ' ' + result + ' ' + computerSelection;
+    result = document.createElement('div');
+    result.innerText = text;
+    result.classList.add('result');
+    result.addEventListener('animationend', event => event.target.remove());
+    results.append(result);
 }
 
 function gameOver(result) {
-    console.log(result);
+    playerScore.textContent = 0;
+    cpuScore.textContent = 0;
+    if (result === 'win') {
+        alert('You won! Well played!');
+    } else {
+        alert('You lost! Maybe you need some more practice...');
+    }
 }
 
 // Randomly returns rock, paper or scissors
@@ -21,19 +32,19 @@ function playRound (playerSelection) {
     computerSelection = computerPlay();
     // Draw
     if (playerSelection === computerSelection) {
-        displayResult(`Draw!`, playerSelection, computerSelection);
+        displayResult('Draw!', playerSelection, computerSelection);
         return;
     }
     // Player win
     if (
-    (playerSelection === '🪨' && computerSelection === '📄') ||
+    (playerSelection === '🪨' && computerSelection === '✂️') ||
     (playerSelection === '📄' && computerSelection === '🪨') ||
     (playerSelection === '✂️' && computerSelection === '📄')
     ) {
         displayResult('Win!', playerSelection, computerSelection);
         playerScore.textContent = parseInt(playerScore.textContent) + 1;
         if (playerScore.textContent === '5') {
-            gameOver('win');
+            gameOver(true);
         }
         return;
     }
@@ -41,7 +52,7 @@ function playRound (playerSelection) {
     displayResult('Lose!', playerSelection, computerSelection);
     cpuScore.textContent = parseInt(cpuScore.textContent) + 1;
     if (cpuScore.textContent === '5') {
-        gameOver('lose');
+        gameOver(false);
     }
     return;
 }
