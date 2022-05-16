@@ -43,7 +43,7 @@ main {
     justify-content: center;
     gap: 10vh;
     height: 100%;
-    width: min(60vw, 40rem);
+    width: min(80vw, 40rem);
     margin: 0 auto;
     text-align: center;
 }
@@ -55,12 +55,17 @@ header {
     font-size: 2rem;
 }
 
+#title {
+    margin: 0;
+}
+
 #choices {
     display: flex;
     justify-content: space-around;
 }
 
 .choice {
+    flex-shrink: 1; 
     padding: 1rem;
     font-size: 6rem;
     border-radius: 1rem;
@@ -79,6 +84,10 @@ header {
     font-size: 1.5rem;
 }
 
+.playerName {
+    margin: 0;
+}
+
 .score{
     font-size: 3rem;
 }
@@ -88,9 +97,13 @@ header {
         font-size: 12px;
     }
     main {
-        gap: 5vh;
+        justify-content: space-around;
+        gap: 0;
+    }
+    .choice {
+        font-size: 4.5rem;
     }
     header {
-        line-height: 3rem;
+        line-height: 4rem;
     }
   }
