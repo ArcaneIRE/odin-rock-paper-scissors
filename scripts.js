@@ -13,13 +13,13 @@ function displayResult(result, playerSelection, computerSelection) {
 }
 
 function gameOver(result) {
-    playerScore.textContent = 0;
-    cpuScore.textContent = 0;
     if (result === true) {
         alert('You won! Well played!');
     } else {
         alert('You lost! Maybe you need some more practice...');
     }
+    playerScore.textContent = 0;
+    cpuScore.textContent = 0;
 }
 
 // Randomly returns rock, paper or scissors
