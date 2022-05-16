@@ -15,7 +15,8 @@ body {
 }
 
 .result {
-    z-index: -1;
+    display: flex;
+    align-items: center;
     position: fixed;
     top: 3rem;
     left: 50%;
@@ -23,6 +24,17 @@ body {
     transform: translate(-50%, 0);
     animation: fadeout 1s ease-out forwards;
     font-size: 2.5rem;
+}
+
+.rockSVG,
+.paperSVG,
+.scissorsSVG {
+    display: block;
+    height: 1em;
+}
+
+.result span {
+    margin: 0 .5rem;
 }
 
 @keyframes fadeout {
@@ -73,9 +85,8 @@ header {
     background-color: beige;
 }
 
-.choice svg {
-    display: block;
-    width: 1em;
+.choice.rockSVG {
+    height: 1em;
 }
 
 #scores {

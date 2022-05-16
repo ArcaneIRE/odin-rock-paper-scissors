@@ -2,11 +2,27 @@
 // Takes user input and plays it against a random computer choice.
 // Displays the winner after each round, and the overall winner after a set number of rounds.
 
+const rockSVG = document.querySelector('.rockSVG');
+const paperSVG = document.querySelector('.paperSVG');
+const scissorsSVG = document.querySelector('.scissorsSVG');
+function selectionToSVG(selection) {
+    if (selection === '🪨') {
+        return rockSVG.cloneNode(true);
+    }
+    if (selection === '📄') {
+        return paperSVG.cloneNode(true);
+    }
+    return scissorsSVG.cloneNode(true);
+}
+
 const results = document.querySelector('#results');
-function displayResult(result, playerSelection, computerSelection) {
-    text = playerSelection + ' ' + result + ' ' + computerSelection;
-    result = document.createElement('div');
-    result.innerText = text;
+function displayResult(outcome, playerSelection, computerSelection) {
+    text = document.createElement('span');
+    text.textContent = outcome;
+    let result = document.createElement('div');
+    result.append(selectionToSVG(playerSelection));
+    result.append(text);
+    result.append(selectionToSVG(computerSelection));
     result.classList.add('result');
     result.addEventListener('animationend', event => event.target.remove());
     results.append(result);
