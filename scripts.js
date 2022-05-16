@@ -59,7 +59,7 @@ function playRound (playerSelection) {
     ) {
         displayResult('Win!', playerSelection, computerSelection);
         playerScore.textContent = parseInt(playerScore.textContent) + 1;
-        if (playerScore.textContent === '5') {
+        if (parseInt(playerScore.textContent) >= '5') {
             gameOver(true);
         }
         return;
@@ -67,7 +67,7 @@ function playRound (playerSelection) {
     // Computer win 
     displayResult('Lose!', playerSelection, computerSelection);
     cpuScore.textContent = parseInt(cpuScore.textContent) + 1;
-    if (cpuScore.textContent === '5') {
+    if (parseInt(cpuScore.textContent) >= '5') {
         gameOver(false);
     }
     return;
